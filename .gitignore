@@ -14,7 +14,7 @@ scripts/
 .nyc_output/
 
 # files
-.env
+.env.local
 *.log
 *.tsbuildinfo
 coverage.json

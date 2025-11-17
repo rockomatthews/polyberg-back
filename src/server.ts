@@ -1,11 +1,17 @@
 import { config as dotenvConfig } from "dotenv";
+import { existsSync } from "fs";
 import { resolve } from "path";
 import { BuilderSigner } from '@polymarket/builder-signing-sdk';
 
 import { createApp } from './app';
 
 
-dotenvConfig({ path: resolve(__dirname, "../.env") });
+const defaultEnvPath = resolve(__dirname, "../.env");
+const localEnvPath = resolve(__dirname, "../.env.local");
+
+dotenvConfig({
+    path: existsSync(localEnvPath) ? localEnvPath : defaultEnvPath,
+});
 
 const PORT = Number(process.env.PORT ?? 8080);
 
